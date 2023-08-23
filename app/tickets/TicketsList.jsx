@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 async function getTickets() {
+    await new Promise(res => setTimeout(res, 3000))
     const res = await fetch('http://localhost:4000/tickets',
         {
             // cache: "no-cache",
