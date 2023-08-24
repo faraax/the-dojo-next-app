@@ -1,9 +1,10 @@
 import Link from "next/link"
 
 async function getTickets() {
-    await new Promise(res => setTimeout(res, 3000))
+    // await new Promise(res => setTimeout(res, 3000))
     const res = await fetch('http://localhost:4000/tickets',
         {
+            // cache: "no-cache",
             // cache: "no-cache",
             next: {
                 revalidate: 0
@@ -18,10 +19,10 @@ export default async function TicketsList() {
     return (
         <>
             {
-                ticket.map((data) => (
+                ticket?.map((data) => (
                     <div key={data.id} className="card my-5">
                         <Link href={`tickets/${data.id}`}>
-                            <h3>{data.title}</h3>
+                            <h3>{data?.title}</h3>
                             <p>{data.body.slice(0, 200)}...</p>
                             <div className={`pill ${data.priority}`}>
                                 {
